@@ -163,7 +163,7 @@
       С дркой, Варюх 💛<br><br>
       Держи подарочек ниже 👇
     </p>
-    <a href="goldenapple.pdf" download class="download-btn">📄 Скачать </a>
+    <a href="goldenapple.pdf" download class="download-btn">📄 Скачать</a>
   </div>
 </div>
 
@@ -213,10 +213,10 @@ const questions = [
   {
     q: "Миньоны или Энгрибердсы?",
     answers: ["желтки", "птицы", "свиньи", "сложно"],
-    reactions: ["тик так", "я бы также выбрал", "очевидно", "согласен"]
+    reactions: ["тик так", "я бы также выбрала", "очевидно", "согласна"]
   },
   {
-    q: "Ты думал будет бас?",
+    q: "Ты думала будет бас?",
     answers: ["наебал", "я блогер подпишись на канал", "субскрайб", "и самый новый мерин забрал"],
     reactions: ["больше нету слов", "знаешь почему", "мне лень", "ну а че, могу себе позволить"]
   }
@@ -259,18 +259,15 @@ function selectAnswer(index, btn) {
   if (answered) return;
   answered = true;
 
-  // Подсветка всех вариантов
   const allBtns = answersBox.querySelectorAll('.answer');
   allBtns.forEach((b, i) => {
     b.disabled = true;
     if (i === index) b.classList.add('correct');
   });
 
-  // Показываем реакцию
   reaction.textContent = questions[current].reactions[index];
   reaction.classList.add('show');
 
-  // Показываем кнопку Далее
   nextBtn.classList.add('show');
 
   progressBar.style.width = ((current + 1) / questions.length * 100) + '%';
@@ -286,33 +283,8 @@ nextBtn.onclick = () => {
   }
 };
 
-// ===== СКАЧИВАНИЕ PDF =====
-document.getElementById('downloadBtn').onclick = () => {
-  // Генерируем PDF через jsPDF (подключим библиотеку ниже)
-  const { jsPDF } = window.jspdf;
-  const doc = new jsPDF();
-
-  doc.setFontSize(22);
-  doc.text('Поздравляю!', 105, 40, { align: 'center' });
-
-  doc.setFontSize(14);
-  const text = [
-    'Ты прошла мой тест!',
-    '',
-    'Спасибо, что поиграла.',
-    '',
-    'С днём рождения! 🎂'
-  ];
-  doc.text(text, 105, 70, { align: 'center' });
-
-  doc.save('поздравление.pdf');
-};
-
 // ===== СТАРТ =====
 renderQuestion();
 </script>
-
-<!-- jsPDF для генерации PDF -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </body>
 </html>
